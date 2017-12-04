@@ -7,3 +7,5 @@ class CensoSerializer(serializers.HyperlinkedModelSerializer):
         model = Censo
         fields = ('id_votacion', 'id_grupo', 'nombre', 'fecha_ini', 'fecha_fin')
 
+    fecha_ini = serializers.DateTimeField(format='%d/%m/%Y %H:%M')
+    fecha_fin = serializers.DateTimeField(format='%d/%m/%Y %H:%M')
