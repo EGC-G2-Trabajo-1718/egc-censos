@@ -10,3 +10,7 @@
 * Hemos usado virtualenv para la gestión aislada del proyecto y sus dependencias
 
 * Para conocer las librerías usadas (instaladas con pip), ver archivo requirements.txt
+
+* Para activar virtualenv: ~Escritorio/egc-censos$ source bin/activate
+
+* Instalar las dependecias/librerías (con virtualenv activado): (venv) ~Escritorio/egc-censos$ pip3 install -r requirements.txt
