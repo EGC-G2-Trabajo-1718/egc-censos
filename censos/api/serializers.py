@@ -1,9 +1,9 @@
-from django.contrib.auth.models import User
+from .models import Censo
 from rest_framework import serializers
 
 
-class UserSerializer(serializers.HyperlinkedModelSerializer):
+class CensoSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        model = User
-        fields = ('username', 'email', 'groups')
+        model = Censo
+        fields = ('id_votacion', 'id_grupo', 'nombre', 'fecha_ini', 'fecha_fin')
 
