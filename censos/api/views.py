@@ -9,12 +9,12 @@ from rest_framework.decorators import api_view
 def get_censo(request):
     id = request.GET.get('id', '')
     try:
-        user = Censo.objects.get(id=id)
+        censo = Censo.objects.get(id=id)
     except Censo.DoesNotExist:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     context = {'request': request}
-    serializer = CensoSerializer(user, context=context)
+    serializer = CensoSerializer(censo, context=context)
     return Response(serializer.data)
 
 
