@@ -8,9 +8,13 @@ from rest_framework.decorators import api_view
 @api_view(['GET'])
 def get_censo(request):
     id = request.GET.get('id', '')
-    try:
-        censo = Censo.objects.get(id=id)
-    except Censo.DoesNotExist:
+
+    if id and Censo.objects.filter(id=id).exists():
+        try:
+            censo = Censo.objects.get(id=id)
+        except Censo.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    else:
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     context = {'request': request}
