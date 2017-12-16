@@ -31,7 +31,15 @@ def create_censo(request):
 
 
 def update_censo(request):
-    return None
+    id = request.GET.get('id')
+    nombre=request.GET.get('nombre')
+    fechafin = request.GET.get('fecha_fin')
+    if id and Censo.obects.filter(id=id).exists():
+       censo = Censo.objets.filter(id=id).update(nombre=nombre, fecha_ini=time.strftime('%X'), fecha_fin=fechafin)
+
+    context = {'request': request}
+    serializer = CensoSerializer(censo, context=context)
+    return Response(serializer.data)
 
 
 def delete_censo(request):
