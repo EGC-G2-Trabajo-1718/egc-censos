@@ -18,8 +18,21 @@ def get_censo(request):
     return Response(serializer.data)
 
 
+@api_view(['filter'])
 def filter_censos(request):
-    return None
+    nombre = request.GET.get('nombre', '')
+    fecha_ini = request.GET.get('fecha_ini', '')
+    fecha_fin = request.GET.get('fecha_fin', '')
+    id_votacion = request.GET.get('id_votacion', '')
+    id_grupo = request.GET.get('id_grupo', '')
+    try:
+        user = Censo.objects.filter(nombre=nombre, fecha_fin=fecha_fin, fecha_ini=fecha_ini, id_votacion=id_votacion, id_grupo=id_grupo)
+    except Censo.doesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+
+    context = {'request': request}
+    serializer = CensoSerializer(user, context=context)
+    return Response(serializer.data)
 
 
 def can_vote(request):
