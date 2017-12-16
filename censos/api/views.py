@@ -5,6 +5,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 from datetime import datetime
 
+
 @api_view(['GET'])
 def get_censo(request):
     id = request.GET.get('id', '')
@@ -27,24 +28,27 @@ def can_vote(request):
 
 
 def create_censo(request):
-    Censo.object.create(id_votacion='33',id_grupo='21',nombre='prueba',fecha_ini=datetime.now(),fecha_fin='')
+    Censo.object.create(id_votacion='33', id_grupo='21', nombre='prueba', fecha_ini=datetime.now(), fecha_fin='')
     return None
 
 
 @api_view(['GET'])
 def update_censo(request):
     id = request.GET.get('id', '')
-    nombre=request.GET.get('nombre', '')
+    nombre = request.GET.get('nombre', Censo.objects.get(id=id).nombre)
+    idgrupo = request.GET.get('id_grupo', Censo.objects.get(id=id).id_grupo)
+    idvotacion = request.GET.get('id_votacion', Censo.objects.get(id=id).id_votacion)
     print(id, nombre)
-    # fechaini = request.GET.get('fecha_ini', '')
-    # if not fechaini:
-    #     fechaini = datetime.now().strftime('%d/%m/%a')
-    # fechafin = request.GET.get('fecha_fin', '')
+    fechaini = request.GET.get('fecha_ini', '')
+    if not fechaini:
+        fechaini = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    fechafin = request.GET.get('fecha_fin', Censo.objects.get(id=id).fecha_fin)
     censo = None
     if id and Censo.objects.filter(id=id).exists():
         try:
-             Censo.objects.filter(id=id).update(nombre=nombre)
-             censo = Censo.objects.get(id=id)
+            Censo.objects.filter(id=id).update(nombre=nombre, fecha_ini=fechaini, fecha_fin=fechafin, id_grupo=idgrupo,
+                                               id_votacion=idvotacion)
+            censo = Censo.objects.get(id=id)
         except Exception as e:
             print(str(e))
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -55,4 +59,3 @@ def update_censo(request):
 
 def delete_censo(request):
     return None
-
