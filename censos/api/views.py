@@ -90,11 +90,8 @@ def filter_censos(request):
         elif not nombre and not id_votacion and not id_grupo and fecha_ini and not fecha_fin:
             censos = Censo.objects.filter(fecha_ini=fecha_ini)
         elif not nombre and not id_votacion and not id_grupo and not fecha_ini and fecha_fin:
+
             censos = Censo.objects.filter(fecha_fin=fecha_fin)
-
-
-
-
 
     except Exception:
         return Response(status=status.HTTP_404_NOT_FOUND)
