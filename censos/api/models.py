@@ -15,10 +15,3 @@ class Censo(models.Model):
         db_table = 'censo'
 
 
-class CensoDelete(models.Model):
-    exito = models.BooleanField
-    mensaje = models.CharField(blank=False, null=False)
-
-    class Meta:
-        managed = True
-        db_table = 'censo'

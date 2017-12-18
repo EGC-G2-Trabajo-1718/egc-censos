@@ -1,5 +1,4 @@
 from .models import Censo
-from .models import CensoDelete
 from rest_framework import serializers
 
 
@@ -12,7 +11,5 @@ class CensoSerializer(serializers.HyperlinkedModelSerializer):
     fecha_fin = serializers.DateTimeField(format='%d/%m/%Y %H:%M')
 
 
-class DeleteSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = CensoDelete
-        fields = ('exito', 'mensaje')
+class ExitSerializer(serializers.HyperlinkedModelSerializer):
+    fields = ('exito', 'mensaje')
