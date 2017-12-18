@@ -3,3 +3,6 @@ include/
 lib/
 pip-selfcheck.json
 .idea/
+censos/api/__pycache__/
+censos/censos/__pycache__/
+censos/api/migrations/__pycache__/
