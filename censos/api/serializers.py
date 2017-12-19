@@ -9,3 +9,10 @@ class CensoSerializer(serializers.HyperlinkedModelSerializer):
 
     fecha_ini = serializers.DateTimeField(format='%d/%m/%Y %H:%M')
     fecha_fin = serializers.DateTimeField(format='%d/%m/%Y %H:%M')
+
+
+class DeleteSerializer(serializers.Serializer):
+    exito = serializers.BooleanField()
+    mensaje = serializers.CharField(max_length=60)
+
+

@@ -1,8 +1,11 @@
+from django.http import HttpResponse
+
 from .models import Censo
 from .serializers import CensoSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+import json
 
 
 @api_view(['GET'])
@@ -34,17 +37,21 @@ def update_censo(request):
     return None
 
 
+@api_view(['GET'])
 def delete_censo(request):
-    @api_view(['delete'])
-    def delete_censo(request):
-        idRespuesta = request.GET.get('id', '')
+    idRespuesta = request.GET.get('id', '')
 
-        if Censo.objects.filter(id=idRespuesta).exists():
-            Censo.objetcts.filter(id=idRespuesta).delete()
-            deleted = ExitSerializer.serializer_field_mapping("True", "El censo ha sido eliminado")
-            return HttpResponse(content=deleted, mimetype='application/json')
+    if idRespuesta and Censo.objects.filter(id=idRespuesta).exists():
+        try:
+            Censo.objects.filter(id=idRespuesta).delete()
+        except Exception as e:
+            response_data = {'Exito': False, 'Mensaje': 'No se ha podido eliminar'}
+            return HttpResponse(json.dumps(response_data), content_type="application/json")
+        response_data = {'Exito': True, 'Mensaje': 'Eliminado con exito'}
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
+    else:
+        response_data = {'Exito': False, 'Mensaje': 'No se ha podido eliminar'}
+        return HttpResponse(json.dumps(response_data), content_type="application/json")
 
-        else:
-            notDeleted = ExitSerializer.serializer_field_mapping("False", "El censo no se ha podido eliminar")
-            return HttpResponse(content=notDeleted, mimetype='application/json')
+
 
