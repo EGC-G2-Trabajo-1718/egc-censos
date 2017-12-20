@@ -10,3 +10,4 @@ urlpatterns = [
     url(r'^update/', views.update_censo),
     url(r'^delete/', views.delete_censo)
 ]
+
