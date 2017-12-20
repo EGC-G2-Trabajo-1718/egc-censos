@@ -63,11 +63,30 @@ def create_censo(request):
     return Response(serializer.data)
 
 
-
+@api_view(['GET'])
 def update_censo(request):
-    return None
+    id = request.GET.get('id', '')
+    nombre = request.GET.get('nombre', Censo.objects.get(id=id).nombre)
+    idgrupo = request.GET.get('id_grupo', Censo.objects.get(id=id).id_grupo)
+    idvotacion = request.GET.get('id_votacion', Censo.objects.get(id=id).id_votacion)
+    print(id, nombre)
+    fechaini = request.GET.get('fecha_ini', '')
+    if not fechaini:
+        fechaini = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    fechafin = request.GET.get('fecha_fin', Censo.objects.get(id=id).fecha_fin)
+    censo = None
+    if id and Censo.objects.filter(id=id).exists():
+        try:
+            Censo.objects.filter(id=id).update(nombre=nombre, fecha_ini=fechaini, fecha_fin=fechafin, id_grupo=idgrupo,
+                                               id_votacion=idvotacion)
+            censo = Censo.objects.get(id=id)
+        except Exception as e:
+            print(str(e))
+            return Response(status=status.HTTP_404_NOT_FOUND)
+    context = {'request': request}
+    serializer = CensoSerializer(censo, context=context)
+    return Response(serializer.data)
 
 
 def delete_censo(request):
     return None
-
