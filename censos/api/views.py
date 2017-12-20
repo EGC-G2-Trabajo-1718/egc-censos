@@ -48,9 +48,9 @@ def filter_censos(request):
                                           id_votacion=id_votacion)
         elif not nombre and fecha_ini and fecha_fin and id_votacion and id_grupo:
             censos = Censo.objects.filter(fecha_ini=fecha_ini, fecha_fin=fecha_fin, id_votacion=id_votacion,
-                                          id_grupo=grupo)
+                                          id_grupo=id_grupo)
         elif not nombre and not fecha_ini and fecha_fin and id_votacion and id_grupo:
-            censos = Censo.objects.filter(fecha_fin=fecha_fin, id_votacion=id_votacion, id_grupo=grupo)
+            censos = Censo.objects.filter(fecha_fin=fecha_fin, id_votacion=id_votacion, id_grupo=id_grupo)
         elif not nombre and not fecha_ini and not fecha_fin and not id_votacion and id_grupo:
             censos = Censo.objects.filter(id_grupo=id_grupo)
         elif nombre and not fecha_ini and not fecha_fin and not id_votacion and id_grupo:
