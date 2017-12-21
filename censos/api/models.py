@@ -1,8 +1,8 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
-# Create your models here.
 class Censo(models.Model):
     id_votacion = models.IntegerField(blank=False, null=False)
     #  Campo ROLE, con valores de 'ASISTENTE', 'PONENTE', 'AMBOS': antiguo id_grupo, cambiado por API de Autenticación
