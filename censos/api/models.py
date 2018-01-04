@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils import timezone
 
 
@@ -13,3 +14,6 @@ class Censo(models.Model):
     class Meta:
         managed = True
         db_table = 'censo'
+
+
+

@@ -6,4 +6,8 @@ pip-selfcheck.json
 censos/api/__pycache__/
 censos/censos/__pycache__/
 censos/api/migrations/__pycache__/
+<<<<<<< HEAD
 censos/.DS_Store
+=======
+censos/.DS_Store
+>>>>>>> aba8cef3f549358100dbca371d41c1cb621b327e

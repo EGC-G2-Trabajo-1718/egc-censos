@@ -182,6 +182,7 @@ def delete_censo(request):
     if idRespuesta and Censo.objects.filter(id=idRespuesta).exists():
         try:
             Censo.objects.filter(id=idRespuesta).delete()
+
         except Exception as e:
             response_data = {'Exito': False, 'Mensaje': 'No se ha podido eliminar'}
             return HttpResponse(json.dumps(response_data), content_type="application/json")

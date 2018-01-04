@@ -1,13 +1,18 @@
 from django.test import TestCase
+from .models import Censo
+from rest_framework.test import APITestCase
 from . import views
 
-class CensosTest(TestCase):
-    def UpdateTest(self):
-        views.update_censo.
+class CensoTests(APITestCase):
 
-    def UpdateTest(self):
+    def test_delete_censo(self):
+        c1 = Censo.objects.create(id_votacion=196, id_grupo=101, nombre="Censocreate", fecha_ini="2017-12-15 11:11:i11",
+                                  fecha_fn="2018-12-15 11:11:11")
+        c2 = Censo.objects.get(nombre="Censocreate")
+        Censo.objects.filter(nombre="Censocreate").delete()
 
-        
-
-
-
+    def test_update_censo(self):
+        c1 = Censo.objects.create(id_votacion=196, id_grupo=101, nombre="Censocreate", fecha_ini="2017-12-15 11:11:i11",
+                                  fecha_fn="2018-12-15 11:11:11")
+        Censo.objects.update(id=196, nombre="CensoUpdate")
+        Censo.objects.get(nombre="CensoUpdate")
