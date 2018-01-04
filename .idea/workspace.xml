@@ -2,17 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="35898e81-004e-4c1b-82be-862314dbe61d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/censos/api/models.py" afterPath="$PROJECT_DIR$/censos/api/models.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/censos/api/tests.py" afterPath="$PROJECT_DIR$/censos/api/tests.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/censos/api/urls.py" afterPath="$PROJECT_DIR$/censos/api/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/censos/api/views.py" afterPath="$PROJECT_DIR$/censos/api/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/censos/censos/settings.py" afterPath="$PROJECT_DIR$/censos/censos/settings.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/python3.5/site-packages/django/contrib/sitemaps/__init__.py" afterPath="$PROJECT_DIR$/lib/python3.5/site-packages/django/contrib/sitemaps/__init__.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/python3.5/site-packages/django/contrib/syndication/views.py" afterPath="$PROJECT_DIR$/lib/python3.5/site-packages/django/contrib/syndication/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/python3.5/site-packages/django/shortcuts.py" afterPath="$PROJECT_DIR$/lib/python3.5/site-packages/django/shortcuts.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/lib/python3.5/site-packages/django/views/generic/edit.py" afterPath="$PROJECT_DIR$/lib/python3.5/site-packages/django/views/generic/edit.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -62,49 +52,11 @@
       <file leaf-file-name="tests.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/censos/api/tests.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="72">
-              <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+            <state relative-caret-position="332">
+              <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/censos/censos/settings.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
-              <caret line="48" column="1" lean-forward="true" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
-              <folding>
-                <marker date="1515070018225" expanded="true" signature="1126:1262" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="1279:1676" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="1722:2191" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="1728:2188" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="1865:2181" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="1901:2170" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="2241:2316" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="2331:2532" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="2348:2530" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="2536:2637" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="2667:3061" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="2673:2770" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="2778:2865" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="2873:2961" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="2969:3058" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="3065:3141" ph="..." />
-                <marker date="1515070018225" expanded="true" signature="3237:3338" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/censos/api/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -712,14 +664,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/censos/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/censos/api/serializers.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="54">
@@ -738,36 +682,26 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/censos/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="144">
+          <caret line="9" column="17" lean-forward="false" selection-start-line="9" selection-start-column="17" selection-end-line="9" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/censos/censos/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="122">
           <caret line="48" column="1" lean-forward="true" selection-start-line="48" selection-start-column="1" selection-end-line="48" selection-end-column="1" />
-          <folding>
-            <marker date="1515070018225" expanded="true" signature="1126:1262" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="1279:1676" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="1722:2191" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="1728:2188" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="1865:2181" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="1901:2170" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="2241:2316" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="2331:2532" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="2348:2530" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="2536:2637" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="2667:3061" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="2673:2770" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="2778:2865" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="2873:2961" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="2969:3058" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="3065:3141" ph="..." />
-            <marker date="1515070018225" expanded="true" signature="3237:3338" ph="..." />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/censos/api/tests.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="72">
-          <caret line="4" column="0" lean-forward="true" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        <state relative-caret-position="332">
+          <caret line="24" column="47" lean-forward="true" selection-start-line="24" selection-start-column="47" selection-end-line="24" selection-end-column="47" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
