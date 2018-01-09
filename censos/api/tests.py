@@ -6,6 +6,7 @@ from .models import Censo
 
 
 class CensoTests(APITestCase):
+
     def test_delete_censo(self):
         c1 = Censo.objects.create(id_votacion=196, id_grupo=101, fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
                                   fecha_fin='2018-12-15 11:11:11')
@@ -15,3 +16,14 @@ class CensoTests(APITestCase):
         Censo.objects.filter(id=c1.id).delete()
         c3 = Censo.objects.all()
         self.assertEquals(c3.count(), 0)
+
+    def test_filter_(self):
+        c1 = Censo.objects.create(id_votacion=196, id_grupo=101, fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
+                                  fecha_fin='2018-12-15 11:11:11')
+        return Censo.objects.filter(nombre='Censocreate').exists() is True
+
+    def test_filter_Negative(self):
+        c1 = Censo.objects.create(id_votacion=196, id_grupo=101, fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
+                                  fecha_fin='2018-12-15 11:11:11')
+        return Censo.objects.filter(nombre='paco', id_votacion=196).exists() is False
+
