@@ -30,78 +30,78 @@ def filter_censos(request):
     fecha_ini = request.GET.get('fecha_ini', '')
     fecha_fin = request.GET.get('fecha_fin', '')
     id_votacion = request.GET.get('id_votacion', '')
-    id_grupo = request.GET.get('id_grupo', '')
+    rol = request.GET.get('rol', '')
 
     # TODO: Simplificar esto con filter(**args)
     try:
-        if nombre and fecha_ini and fecha_fin and id_votacion and id_grupo:
+        if nombre and fecha_ini and fecha_fin and id_votacion and rol:
             censos = Censo.objects.filter(nombre=nombre, fecha_fin=fecha_fin, fecha_ini=fecha_ini,
-                                          id_votacion=id_votacion, id_grupo=id_grupo)
-        elif nombre and not fecha_ini and not fecha_fin and not id_votacion and not id_grupo:
+                                          id_votacion=id_votacion, rol=rol)
+        elif nombre and not fecha_ini and not fecha_fin and not id_votacion and not rol:
             censos = Censo.objects.filter(nombre=nombre)
-        elif nombre and fecha_ini and not fecha_fin and not id_votacion and not id_grupo:
+        elif nombre and fecha_ini and not fecha_fin and not id_votacion and not rol:
             censos = Censo.objects.filter(nombre=nombre, fecha_ini=fecha_ini)
-        elif nombre and fecha_ini and fecha_fin and not id_votacion and not id_grupo:
+        elif nombre and fecha_ini and fecha_fin and not id_votacion and not rol:
             censos = Censo.objects.filter(nombre=nombre, fecha_ini=fecha_ini, fecha_fin=fecha_fin)
-        elif nombre and fecha_ini and fecha_fin and id_votacion and not id_grupo:
+        elif nombre and fecha_ini and fecha_fin and id_votacion and not rol:
             censos = Censo.objects.filter(nombre=nombre, fecha_ini=fecha_ini, fecha_fin=fecha_fin,
                                           id_votacion=id_votacion)
-        elif not nombre and fecha_ini and fecha_fin and id_votacion and id_grupo:
+        elif not nombre and fecha_ini and fecha_fin and id_votacion and rol:
             censos = Censo.objects.filter(fecha_ini=fecha_ini, fecha_fin=fecha_fin, id_votacion=id_votacion,
-                                          id_grupo=id_grupo)
-        elif not nombre and not fecha_ini and fecha_fin and id_votacion and id_grupo:
-            censos = Censo.objects.filter(fecha_fin=fecha_fin, id_votacion=id_votacion, id_grupo=id_grupo)
-        elif not nombre and not fecha_ini and not fecha_fin and not id_votacion and id_grupo:
-            censos = Censo.objects.filter(id_grupo=id_grupo)
-        elif nombre and not fecha_ini and not fecha_fin and not id_votacion and id_grupo:
-            censos = Censo.objects.filter(nombre=nombre, id_grupo=id_grupo)
-        elif nombre and not fecha_ini and not fecha_fin and id_votacion and id_grupo:
-            censos = Censo.objects.filter(nombre=nombre, id_votacion=id_votacion, id_grupo=id_grupo)
-        elif nombre and not fecha_ini and not fecha_fin and id_votacion and not id_grupo:
+                                          rol=rol)
+        elif not nombre and not fecha_ini and fecha_fin and id_votacion and rol:
+            censos = Censo.objects.filter(fecha_fin=fecha_fin, id_votacion=id_votacion, rol=rol)
+        elif not nombre and not fecha_ini and not fecha_fin and not id_votacion and rol:
+            censos = Censo.objects.filter(rol=rol)
+        elif nombre and not fecha_ini and not fecha_fin and not id_votacion and rol:
+            censos = Censo.objects.filter(nombre=nombre, rol=rol)
+        elif nombre and not fecha_ini and not fecha_fin and id_votacion and rol:
+            censos = Censo.objects.filter(nombre=nombre, id_votacion=id_votacion, rol=rol)
+        elif nombre and not fecha_ini and not fecha_fin and id_votacion and not rol:
             censos = Censo.objects.filter(nombre=nombre, id_votacion=id_votacion)
-        elif nombre and id_votacion and id_grupo and fecha_ini and not fecha_fin:
-            censos = Censo.objects.filter(nombre=nombre, id_votacion=id_votacion, id_grupo=id_grupo,
+        elif nombre and id_votacion and rol and fecha_ini and not fecha_fin:
+            censos = Censo.objects.filter(nombre=nombre, id_votacion=id_votacion, rol=rol,
                                           fecha_ini=fecha_ini)
-        elif nombre and id_votacion and id_grupo and id_grupo and not fecha_ini and fecha_fin:
-            censos = Censo.objects.filter(nombre=nombre, id_votacion=id_votacion, id_grupo=id_grupo,
+        elif nombre and id_votacion and rol and rol and not fecha_ini and fecha_fin:
+            censos = Censo.objects.filter(nombre=nombre, id_votacion=id_votacion, rol=rol,
                                           fecha_ini=fecha_ini)
-        elif nombre and id_votacion and not id_grupo and fecha_ini and not fecha_fin:
+        elif nombre and id_votacion and not rol and fecha_ini and not fecha_fin:
             censos = Censo.objects.filter(nombre=nombre, id_votacion=id_votacion, fecha_ini=fecha_ini)
-        elif nombre and id_votacion and not id_grupo and not fecha_ini and fecha_fin:
+        elif nombre and id_votacion and not rol and not fecha_ini and fecha_fin:
             censos = Censo.objects.filter(nombre=nombre, id_votacion=id_votacion, fecha_fin=fecha_fin)
-        elif nombre and not id_votacion and id_grupo and fecha_ini and fecha_fin:
-            censos = Censo.objects.filter(nombre=nombre, id_grupo=id_grupo, fecha_fin=fecha_fin, fecha_ini=fecha_ini)
-        elif nombre and not id_votacion and id_grupo and fecha_ini and not fecha_fin:
-            censos = Censo.objects.filter(nombre=nombre, id_grupo=id_grupo, fecha_ini=fecha_ini)
-        elif nombre and not id_votacion and id_grupo and not fecha_ini and fecha_fin:
-            censos = Censo.objects.filter(nombre=nombre, id_grupo=id_grupo, fecha_fin=fecha_fin)
-        elif nombre and not id_votacion and not id_grupo and not fecha_ini and fecha_fin:
+        elif nombre and not id_votacion and rol and fecha_ini and fecha_fin:
+            censos = Censo.objects.filter(nombre=nombre, rol=rol, fecha_fin=fecha_fin, fecha_ini=fecha_ini)
+        elif nombre and not id_votacion and rol and fecha_ini and not fecha_fin:
+            censos = Censo.objects.filter(nombre=nombre, rol=rol, fecha_ini=fecha_ini)
+        elif nombre and not id_votacion and rol and not fecha_ini and fecha_fin:
+            censos = Censo.objects.filter(nombre=nombre, rol=rol, fecha_fin=fecha_fin)
+        elif nombre and not id_votacion and not rol and not fecha_ini and fecha_fin:
             censos = Censo.objects.filter(nombre=nombre, fecha_fin=fecha_fin)
-        elif not nombre and id_votacion and id_grupo and fecha_ini and not fecha_fin:
-            censos = Censo.objects.filter(id_votacion=id_votacion, id_grupo=id_grupo, fecha_ini=fecha_ini)
-        elif not nombre and id_votacion and id_grupo and not fecha_ini and fecha_fin:
-            censos = Censo.objects.filter(id_votacion=id_votacion, id_grupo=id_grupo, fecha_fin=fecha_fin)
-        elif not nombre and id_votacion and id_grupo and not fecha_ini and not fecha_fin:
-            censos = Censo.objects.filter(id_votacion=id_votacion, id_grupo=id_grupo)
-        elif not nombre and id_votacion and not id_grupo and fecha_ini and fecha_fin:
+        elif not nombre and id_votacion and rol and fecha_ini and not fecha_fin:
+            censos = Censo.objects.filter(id_votacion=id_votacion, rol=rol, fecha_ini=fecha_ini)
+        elif not nombre and id_votacion and rol and not fecha_ini and fecha_fin:
+            censos = Censo.objects.filter(id_votacion=id_votacion, rol=rol, fecha_fin=fecha_fin)
+        elif not nombre and id_votacion and rol and not fecha_ini and not fecha_fin:
+            censos = Censo.objects.filter(id_votacion=id_votacion, rol=rol)
+        elif not nombre and id_votacion and not rol and fecha_ini and fecha_fin:
             censos = Censo.objects.filter(id_votacion=id_votacion, fecha_ini=fecha_ini, fecha_fin=fecha_fin)
-        elif not nombre and id_votacion and not id_grupo and fecha_ini and not fecha_fin:
+        elif not nombre and id_votacion and not rol and fecha_ini and not fecha_fin:
             censos = Censo.objects.filter(id_votacion=id_votacion, fecha_ini=fecha_ini)
-        elif not nombre and id_votacion and not id_grupo and not fecha_ini and fecha_fin:
+        elif not nombre and id_votacion and not rol and not fecha_ini and fecha_fin:
             censos = Censo.objects.filter(id_votacion=id_votacion, fecha_fin=fecha_fin)
-        elif not nombre and id_votacion and not id_grupo and not fecha_ini and not fecha_fin:
+        elif not nombre and id_votacion and not rol and not fecha_ini and not fecha_fin:
             censos = Censo.objects.filter(id_votacion=id_votacion)
-        elif not nombre and not id_votacion and id_grupo and fecha_ini and fecha_fin:
-            censos = Censo.objects.filter(id_grupo=id_grupo, fecha_ini=fecha_ini, fecha_fin=fecha_fin)
-        elif not nombre and not id_votacion and id_grupo and fecha_ini and not fecha_fin:
-            censos = Censo.objects.filter(id_grupo=id_grupo, fecha_ini=fecha_ini)
-        elif not nombre and not id_votacion and id_grupo and not fecha_ini and fecha_fin:
-            censos = Censo.objects.filter(id_grupo=id_grupo, fecha_fin=fecha_fin)
-        elif not nombre and not id_votacion and not id_grupo and fecha_ini and fecha_fin:
+        elif not nombre and not id_votacion and rol and fecha_ini and fecha_fin:
+            censos = Censo.objects.filter(rol=rol, fecha_ini=fecha_ini, fecha_fin=fecha_fin)
+        elif not nombre and not id_votacion and rol and fecha_ini and not fecha_fin:
+            censos = Censo.objects.filter(rol=rol, fecha_ini=fecha_ini)
+        elif not nombre and not id_votacion and rol and not fecha_ini and fecha_fin:
+            censos = Censo.objects.filter(rol=rol, fecha_fin=fecha_fin)
+        elif not nombre and not id_votacion and not rol and fecha_ini and fecha_fin:
             censos = Censo.objects.filter(fecha_ini=fecha_ini, fecha_fin=fecha_fin)
-        elif not nombre and not id_votacion and not id_grupo and fecha_ini and not fecha_fin:
+        elif not nombre and not id_votacion and not rol and fecha_ini and not fecha_fin:
             censos = Censo.objects.filter(fecha_ini=fecha_ini)
-        elif not nombre and not id_votacion and not id_grupo and not fecha_ini and fecha_fin:
+        elif not nombre and not id_votacion and not rol and not fecha_ini and fecha_fin:
 
             censos = Censo.objects.filter(fecha_fin=fecha_fin)
 
@@ -119,14 +119,14 @@ def can_vote(request):
 
 @api_view(['GET'])
 def create_censo(request):
-    id_grupo = request.GET.get('id_grupo', '')
+    rol = request.GET.get('rol', '')
     id_votacion = request.GET.get('id_votacion', '')
     nombre = request.GET.get('nombre', '')
     fecha_ini = request.GET.get('fecha_ini', '')
     fecha_fin = request.GET.get('fecha_fin', '')
 
     if not nombre:
-        nombre = 'Censo de ' + id_votacion + ' para el grupo ' + id_grupo
+        nombre = 'Censo de ' + id_votacion + ' para el grupo ' + rol
 
     if not fecha_ini:
         fecha_ini = datetime.now()
@@ -135,10 +135,9 @@ def create_censo(request):
         fecha_fin = datetime.now()
         # TODO pedir fecha de fin a la api de adminsitración de votos
 
-    print(id_grupo, id_votacion)
-    if id_grupo and id_votacion:
+    if rol and id_votacion:
         try:
-            censo = Censo.objects.create(id_votacion=id_votacion, id_grupo=id_grupo, nombre=nombre, fecha_ini=fecha_ini,
+            censo = Censo.objects.create(id_votacion=id_votacion, rol=rol, nombre=nombre, fecha_ini=fecha_ini,
                                          fecha_fin=fecha_fin)
         except Exception:
             return Response(status=status.HTTP_404_NOT_FOUND)
@@ -154,9 +153,8 @@ def create_censo(request):
 def update_censo(request):
     id = request.GET.get('id', '')
     nombre = request.GET.get('nombre', Censo.objects.get(id=id).nombre)
-    idgrupo = request.GET.get('id_grupo', Censo.objects.get(id=id).id_grupo)
+    rol = request.GET.get('rol', Censo.objects.get(id=id).rol)
     idvotacion = request.GET.get('id_votacion', Censo.objects.get(id=id).id_votacion)
-    print(id, nombre)
     fechaini = request.GET.get('fecha_ini', '')
     if not fechaini:
         fechaini = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
@@ -164,11 +162,10 @@ def update_censo(request):
     censo = None
     if id and Censo.objects.filter(id=id).exists():
         try:
-            Censo.objects.filter(id=id).update(nombre=nombre, fecha_ini=fechaini, fecha_fin=fechafin, id_grupo=idgrupo,
+            Censo.objects.filter(id=id).update(nombre=nombre, fecha_ini=fechaini, fecha_fin=fechafin, rol=rol,
                                                id_votacion=idvotacion)
             censo = Censo.objects.get(id=id)
         except Exception as e:
-            print(str(e))
             return Response(status=status.HTTP_404_NOT_FOUND)
     context = {'request': request}
     serializer = CensoSerializer(censo, context=context)

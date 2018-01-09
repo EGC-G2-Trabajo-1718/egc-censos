@@ -1,0 +1,19 @@
+language: python
+
+python:
+- "3.6"
+
+env:	    - DJANGO_VERSION=1.11.7
+
+# Instalamos grunt en el caso de que no lo esté
+before_install:
+  - openssl aes-256-cbc -K $encrypted_5b1c2ac37d4b_key -iv $encrypted_5b1c2ac37d4b_iv -in deploy.enc -out deploy -d
+
+install:
+  - virtualenv .
+  - pip3 install -r requirements.txt
+
+script:
+  - source bin/activate
+  - ./manage.py test api/
+
