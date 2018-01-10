@@ -1,0 +1,17 @@
+language: python
+
+python:
+- "3.6"
+
+env:	    - DJANGO_VERSION=1.11.7
+
+# Instalamos grunt en el caso de que no lo esté
+before_install:
+  #Esto nos lo proporciona integración
+install:
+  - pip3 install -r requirements.txt
+
+script:
+  - source bin/activate
+  - ./manage.py test api/
+
