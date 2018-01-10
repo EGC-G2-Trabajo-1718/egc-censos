@@ -9,6 +9,10 @@ env:	    - DJANGO_VERSION=1.11.7
 before_install:
   #Esto nos lo proporciona integración
 install:
+<<<<<<< HEAD
+=======
+  - virtualenv .
+>>>>>>> master
   - pip3 install -r requirements.txt
 
 script:
