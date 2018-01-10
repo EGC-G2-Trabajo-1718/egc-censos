@@ -7,7 +7,8 @@ env:	    - DJANGO_VERSION=1.11.7
 
 # Instalamos grunt en el caso de que no lo esté
 before_install:
-  #Esto nos lo proporciona integración
+  - openssl aes-256-cbc -K $encrypted_5b1c2ac37d4b_key -iv $encrypted_5b1c2ac37d4b_iv -in deploy.enc -out deploy -d
+
 install:
 <<<<<<< HEAD
 =======
