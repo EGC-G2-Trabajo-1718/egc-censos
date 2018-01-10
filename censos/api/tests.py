@@ -41,7 +41,7 @@ class CensoTests(APITestCase):
         Censo.objects.get(nombre="CensoUpdate")
 
     def test_create_positive(self):
-        c1 = Censo.objects.create(id_votacion=200, rol='PONENTE' fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
+        c1 = Censo.objects.create(id_votacion=200, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
                                   fecha_fin='2018-12-15 11:11:11')
         c1.save()
         c2 = Censo.objects.all()
