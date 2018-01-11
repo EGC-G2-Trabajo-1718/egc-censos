@@ -1,18 +1,21 @@
 language: python
 
 python:
-- "3.6"
+  - 3.6
 
-env:	    - DJANGO_VERSION=1.11.7
+services:
+  - mysql
 
-# Instalamos grunt en el caso de que no lo esté
+env:	    
+  - DJANGO_VERSION=1.11.7
+
 before_install:
-  #Esto nos lo proporciona integración
+  - mysql -uroot -ptoor -e 'CREATE DATABASE censos;'
+  - mysql -uroot -ptoor -e 'use censos;'
+  - mysql -uroot -ptoor < create_database.sql
 install:
-  - virtualenv .
-  - pip3 install -r requirements.txt
+  - pip install -q Django==$DJANGO_VERSION
+  - pip install -r requirements.txt
 
 script:
-  - source bin/activate
-  - ./manage.py test api/
-
+  - python censos/manage.py test censos/api/
