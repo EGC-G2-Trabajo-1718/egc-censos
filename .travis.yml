@@ -11,7 +11,7 @@ env:
 
 before_install:
   - mysql -e 'CREATE DATABASE IF NOT EXISTS censos;'
-  - mysql -e --default-character-set=utf8 censos < create_database.sql
+  - mysql -uroot censos < create_database.sql
 install:
   - pip install -q Django==$DJANGO_VERSION
   - pip install -r requirements.txt
