@@ -10,9 +10,8 @@ env:
   - DJANGO_VERSION=1.11.7
 
 before_install:
-  - mysql -uroot -ptoor -e 'CREATE DATABASE censos;'
-  - mysql -uroot -ptoor -e 'use censos;'
-  - mysql -uroot -ptoor < create_database.sql
+  - mysql -e 'CREATE DATABASE IF NOT EXISTS censos;'
+  - mysql -u root --default-character-set=utf8 censos < create_database.sql
 install:
   - pip install -q Django==$DJANGO_VERSION
   - pip install -r requirements.txt
