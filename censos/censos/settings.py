@@ -22,7 +22,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'sc=aabdhxgsa9#)2zu6nk&(f1u@$8uwmi-*21)ka94kzwc5bj9'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -82,13 +82,22 @@ WSGI_APPLICATION = 'censos.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
+if DEBUG:
+    HOST = 'localhost'
+    USER = 'root'
+    PASSWORD = ''
+else:
+    HOST = 'localhost'
+    USER = 'root'
+    PASSWORD = ''
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'censos',
-        'USER': 'root',
-        'PASSWORD': 'toor',
-        'HOST': 'localhost',
+        'USER': USER,
+        'PASSWORD': PASSWORD,
+        'HOST': HOST,
         'PORT': '3306',
     }
 }
