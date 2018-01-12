@@ -18,14 +18,18 @@ class CensoTests(APITestCase):
 
     def test_filter_(self):
         c1 = Censo.objects.create(id_votacion=196, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11',
-                                  nombre='Censocreate',
-                                  fecha_fin='2018-12-15 11:11:11')
+                                  nombre='Censocreate', fecha_fin='2018-12-15 11:11:11')
         return Censo.objects.filter(nombre='Censocreate').exists() is True
 
     def test_filter_Negative(self):
         c1 = Censo.objects.create(id_votacion=196, rol='PONENTE', fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
                                   fecha_fin='2018-12-15 11:11:11')
         return Censo.objects.filter(nombre='paco', id_votacion=196).exists() is False
+
+    def test_filter(self):
+        c1 = Censo.objects.create(id_votacion=4, rol='PONENTE', fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
+                                  fecha_fin='2018-12-15 11:11:11')
+        return Censo.objects.filter(id_votacion=4).exists() is True
 
     def test_update_censo(self):
         c1 = Censo.objects.create(id_votacion=196, rol='PONENTE', nombre="Censocreate", fecha_ini="2017-12-15 11:11:11",
