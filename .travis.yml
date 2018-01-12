@@ -18,3 +18,4 @@ install:
 
 script:
   - python censos/manage.py test censos/api/
+
