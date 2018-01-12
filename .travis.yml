@@ -10,6 +10,7 @@ env:
   - DJANGO_VERSION=1.11.7
 
 before_install:
+  - myslq -e 'DROP DATABASE IF EXISTS censos;'
   - mysql -e 'CREATE DATABASE IF NOT EXISTS censos;'
   - mysql -uroot censos < create_database.sql
 install:
