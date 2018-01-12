@@ -4,9 +4,9 @@ from .serializers import CensoSerializer
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
-from datetime import datetime
+from datetime import datetime, timedelta
 import json
-
+import requests
 
 @api_view(['GET'])
 def get_censo(request):
@@ -32,7 +32,7 @@ def filter_censos(request):
     id_votacion = request.GET.get('id_votacion', '')
     rol = request.GET.get('rol', '')
 
-    # TODO: Simplificar esto con filter(**args)
+    # Podría simplificarse con filter(**args)
     try:
         if nombre and fecha_ini and fecha_fin and id_votacion and rol:
             censos = Censo.objects.filter(nombre=nombre, fecha_fin=fecha_fin, fecha_ini=fecha_ini,
@@ -113,8 +113,26 @@ def filter_censos(request):
     return Response(serializer.data)
 
 
+@api_view(['GET'])
 def can_vote(request):
-    return None
+    id_votacion = request.GET.get('id_votacion', '')
+    username = request.GET.get('username', '')
+    resultado = False
+
+    # URL de autenticación aún sin especificar, cambiar para obtener la petición correcta
+    url_autenticacion = 'http://autenticacion.nvotesus.es'
+    # Obtenemos json de la petición de la api para ver el rol del usuario solicitado
+    # r = requests.get('{0}/api/getRoleUser/{1}'.format(url_autenticacion, username))
+    # json = r.json()
+    # Transformamos el json a DICT para que así podamos acceder al dato que nos interesa, ROL
+    # json_dict = json.loads(json)
+    # A partir del rol, comprobamos que existe en nuestra base de datos un censo activo con ese rol y votación
+    # rol = json_dict['role']
+    rol = 'ASISTENTE'
+    hoy = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    resultado = Censo.objects.filter(id_votacion=id_votacion, rol=rol, fecha_ini__lte=hoy, fecha_fin__gte=hoy).exists()
+    response_data = {'result': resultado}
+    return HttpResponse(json.dumps(response_data), content_type="application/json")
 
 
 @api_view(['GET'])
@@ -132,8 +150,9 @@ def create_censo(request):
         fecha_ini = datetime.now()
 
     if not fecha_fin:
-        fecha_fin = datetime.now()
-        # TODO pedir fecha de fin a la api de adminsitración de votos
+        fi = datetime.now()
+        fa = timedelta(days=21)
+        fecha_fin = fi + fa
 
     if rol and id_votacion:
         try:
