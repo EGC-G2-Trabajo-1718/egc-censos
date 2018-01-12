@@ -10,7 +10,7 @@ env:
   - DJANGO_VERSION=1.11.7
 
 before_install:
-  - mysql -e 'CREATE DATABASE IF censos;'
+  - mysql -e 'CREATE DATABASE censos;'
   - mysql -uroot censos < create_database.sql
 install:
   - pip install -q Django==$DJANGO_VERSION
