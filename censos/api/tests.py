@@ -137,6 +137,7 @@ class CensoTests(APITestCase):
         c2 = Censo.objects.get(id_votacion=196)
         self.assertEquals(c2, c1)
 
+    # Debido a que el servicio mysql de travis trunca los nombres, este test no puede ser comprobado correctamente
     def test_update_censo_rolNEGATIVE(self):
         exception = False
 
@@ -144,7 +145,7 @@ class CensoTests(APITestCase):
                              fecha_ini="2017-12-15 11:11:11",
                              fecha_fin="2019-12-15 11:11:11")
         try:
-            Censo.objects.update(id=196, rol='miroleselmejorporquesoybueno')
+            Censo.objects.update(id=196, rol='ROL_FALSO de prueba que excede la lontigud')
         except:
             exception = True
         self.assertEquals(exception, True)
