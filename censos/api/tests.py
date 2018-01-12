@@ -2,6 +2,7 @@ from rest_framework.test import APITestCase
 from .models import Censo
 from rest_framework.response import Response
 from rest_framework import status
+from datetime import datetime
 
 
 class CensoTests(APITestCase):
@@ -221,3 +222,11 @@ class CensoTests(APITestCase):
             exception = True
 
         self.assertEqual(exception, True)
+
+    def test_can_vote(self):
+        Censo.objects.create(id_votacion=201, rol='PONENTE', fecha_ini='2017-11-20 11:11:11', nombre='Censo_fake',
+                             fecha_fin='2018-12-15 11:11:11')
+        rol = 'PONENTE'
+        hoy = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+        resultado = Censo.objects.filter(id_votacion=201, rol=rol, fecha_ini__lte=hoy, fecha_fin__gte=hoy).exists()
+        self.assertEqual(resultado, True)
