@@ -75,7 +75,7 @@ class CensoTests(APITestCase):
             exception = True
         self.assertEquals(exception, True)
 
-    def test_update_censo_modificafechaNEGATIVO(self):
+    def test_update_censo_modificafechafinNEGATIVO(self):
         exception = False
 
         Censo.objects.create(id_votacion=196, rol='ASISTENTE', nombre="Censocreate",
@@ -83,6 +83,19 @@ class CensoTests(APITestCase):
                              fecha_fin="2019-12-15 11:11:11")
         try:
             Censo.objects.update(id=196, fecha_fin="2014/13/14")
+
+        except:
+            exception = True
+        self.assertEquals(exception, True)
+
+    def test_update_censo_modificafechainiNEGATIVO(self):
+        exception = False
+
+        Censo.objects.create(id_votacion=196, rol='ASISTENTE', nombre="Censocreate",
+                             fecha_ini="2017-12-15 11:11:11",
+                             fecha_fin="2019-12-15 11:11:11")
+        try:
+            Censo.objects.update(id=196, fecha_ini="2014/13/14")
 
         except:
             exception = True
