@@ -32,14 +32,58 @@ class CensoTests(APITestCase):
         return Censo.objects.filter(id_votacion=4).exists() is True
 
     def test_update_censo(self):
-        c1 = Censo.objects.create(id_votacion=196, rol='PONENTE', nombre="Censocreate", fecha_ini="2017-12-15 11:11:11",
+        Censo.objects.create(id_votacion=196, rol='PONENTE', nombre="Censocreate", fecha_ini="2017-12-15 11:11:11",
                                   fecha_fin="2019-12-15 11:11:11")
-        Censo.objects.update(id=196, nombre="CensoUpdate")
-        Censo.objects.get(nombre="CensoUpdate")
+        c2 = Censo.objects.get(id_votacion=196)
+        Censo.objects.update(id_votacion=196, nombre="CensoUpdate")
+        c1 = Censo.objects.get(nombre="CensoUpdate")
+        self.assertEquals(c2, c1)
 
-    def test_update_censo_group(self):
-        c1 = Censo.objects.create(id_votacion=196, rol='ASISTENTE', nombre="Censocreate",
+
+    def test_update_censo_rol(self):
+        Censo.objects.create(id_votacion=196, rol='ASISTENTE', nombre="Censocreate",
                                   fecha_ini="2017-12-15 11:11:11",
                                   fecha_fin="2019-12-15 11:11:11")
-        Censo.objects.update(id=196, nombre="CensoUpdate", rol='AMBOS')
-        return Censo.objects.filter(nombre="CensoUpdate").exists()
+        c1 = Censo.objects.get(id_votacion=196)
+        Censo.objects.update(id_votacion=196, nombre="CensoUpdate", rol='AMBOS')
+        c2 = Censo.objects.get(id_votacion=196)
+        self.assertEquals(c2, c1)
+
+
+    def test_update_censo_rolNEGATIVE(self):
+        exception = False
+
+        Censo.objects.create(id_votacion=196, rol='ASISTENTE', nombre="Censocreate",
+                             fecha_ini="2017-12-15 11:11:11",
+                             fecha_fin="2019-12-15 11:11:11")
+        try:
+            Censo.objects.update(id=196, rol='miroleselmejorporquesoybueno')
+        except:
+            exception = True
+        self.assertEquals(exception, True)
+
+    def test_update_censo_NoExiste(self):
+        exception = False
+
+        Censo.objects.create(id_votacion=196, rol='ASISTENTE', nombre="Censocreate",
+                             fecha_ini="2017-12-15 11:11:11",
+                             fecha_fin="2019-12-15 11:11:11")
+        try:
+            c1 = Censo.objects.update(id=19999)
+            self.assertIsNone(c1)
+        except:
+            exception = True
+        self.assertEquals(exception, True)
+
+    def test_update_censo_modificafechaNEGATIVO(self):
+        exception = False
+
+        Censo.objects.create(id_votacion=196, rol='ASISTENTE', nombre="Censocreate",
+                             fecha_ini="2017-12-15 11:11:11",
+                             fecha_fin="2019-12-15 11:11:11")
+        try:
+            Censo.objects.update(id=196, fecha_fin="2014/13/14")
+
+        except:
+            exception = True
+        self.assertEquals(exception, True)
