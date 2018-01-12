@@ -16,3 +16,7 @@ class DeleteSerializer(serializers.Serializer):
     mensaje = serializers.CharField(max_length=60)
 
 
+class ResultSerializer(serializers.Serializer):
+    result = serializers.BooleanField()
+
+
