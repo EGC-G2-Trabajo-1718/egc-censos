@@ -1,11 +1,7 @@
-from django.test import TestCase
-from . import views
+
 from rest_framework.test import APITestCase
 from .models import Censo
-from django.http import HttpResponse
-from rest_framework.response import Response
-from rest_framework import status
-import json
+
 
 
 class CensoTests(APITestCase):
