@@ -10,7 +10,8 @@ env:
   - DJANGO_VERSION=1.11.7
 
 before_install:
-  - mysql -e 'CREATE DATABASE IF NOT EXISTS censos;'
+  - openssl aes-256-cbc -K $encrypted_5b1c2ac37d4b_key -iv $encrypted_5b1c2ac37d4b_iv -in deploy.enc -out deploy -d
+  - mysql -e 'CREATE DATABASE censos;'
   - mysql -uroot censos < create_database.sql
 install:
   - pip install -q Django==$DJANGO_VERSION
