@@ -16,20 +16,70 @@ class CensoTests(APITestCase):
         c3 = Censo.objects.all()
         self.assertEquals(c3.count(), 0)
 
+    def test_filter(self):
+        excepcion = False
+        try:
+            c2 = Censo.objects.create(id_votacion=196, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11',
+                                 nombre='Censocreate', fecha_fin='2018-12-15 11:11:11')
+            c1 = Censo.objects.filter(id_votacion=196, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11',
+                                 nombre='Censocreate', fecha_fin='2018-12-15 11:11:11')
+            self.assertIs(c1, c2)
+        except:
+            excepcion = True
+        self.assertEquals(excepcion, True)
+
     def test_filter_(self):
-        c1 = Censo.objects.create(id_votacion=196, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11',
-                                  nombre='Censocreate', fecha_fin='2018-12-15 11:11:11')
-        return Censo.objects.filter(nombre='Censocreate').exists() is True
+        excepcion = False
+        try:
+            c2 = Censo.objects.create(id_votacion=196, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11',
+                                 nombre='Censocreate', fecha_fin='2018-12-15 11:11:11')
+            c1 = Censo.objects.filter(id_votacion=196, rol='ASISTENTE')
+            self.assertIs(c1, c2)
+        except:
+            excepcion = True
+        self.assertEquals(excepcion, True)
+
+    def test_filter_fechas(self):
+        excepcion = False
+        try:
+            c2 = Censo.objects.create(id_votacion=196, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11',
+                                 nombre='Censocreate', fecha_fin='2018-12-15 11:11:11')
+            c1 = Censo.objects.filter(fecha_ini='2017-11-15 11:11:11', fecha_fin='2018-12-15 11:11:11')
+            self.assertIs(c1, c2)
+        except:
+            excepcion = True
+        self.assertEquals(excepcion, True)
 
     def test_filter_Negative(self):
-        c1 = Censo.objects.create(id_votacion=196, rol='PONENTE', fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
-                                  fecha_fin='2018-12-15 11:11:11')
-        return Censo.objects.filter(nombre='paco', id_votacion=196).exists() is False
+        excepcion = False
+        try:
+            Censo.objects.create(id_votacion=196, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',fecha_fin='2018-12-15 11:11:11')
+            c1 = Censo.objects.filter(id_votacion=1888)
+            self.assertNotEquals(c1.count(), 0)
+        except:
+            excepcion = True
+        self.assertEquals(excepcion, True)
 
-    def test_filter(self):
-        c1 = Censo.objects.create(id_votacion=4, rol='PONENTE', fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
-                                  fecha_fin='2018-12-15 11:11:11')
-        return Censo.objects.filter(id_votacion=4).exists() is True
+    def test_filter_NegativeRol(self):
+        excepcion = False
+        try:
+            Censo.objects.create(id_votacion=196, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',fecha_fin='2018-12-15 11:11:11')
+            c1 = Censo.objects.filter(rol='NONE')
+            self.assertNotEquals(c1.count(), 0)
+        except:
+            excepcion = True
+        self.assertEquals(excepcion, True)
+
+    def test_filter_Negativefecha_ini(self):
+        excepcion = False
+        try:
+            Censo.objects.create(id_votacion=196, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',fecha_fin='2018-12-15 11:11:11')
+            c1 = Censo.objects.filter(fecha_ini='2018-11-15 11:11:11')
+            self.assertNotEquals(c1.count(), 0)
+        except:
+            excepcion = True
+        self.assertEquals(excepcion, True)
+
 
     def test_update_censo(self):
         c1 = Censo.objects.create(id_votacion=196, rol='PONENTE', nombre="Censocreate", fecha_ini="2017-12-15 11:11:11",
