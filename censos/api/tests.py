@@ -43,19 +43,35 @@ class CensoTests(APITestCase):
         return Censo.objects.filter(nombre="CensoUpdate").exists()
 
 
-    def test_create_positive(self):
+    def test_create_positive_0(self):
         c1 = Censo.objects.create(id_votacion=200, rol='ASISTENTE', fecha_ini='2017-11-15 11:11:11', nombre='Censocreate',
                                   fecha_fin='2018-12-15 11:11:11')
-        c1.save()
-        c2 = Censo.objects.all()
-        self.assertEquals(c2.count(), 1)
-        return Censo.objects.filter(nombre='Censocreate').exists()
+        self.assertEqual(Censo.objects.filter(id_votacion=200).exists(), True)
 
-    def test_create_negative(self):
+    def test_create_positive_1(self):
+        c1 = Censo.objects.create(id_votacion=201, rol='PONENTE', fecha_ini='2018-11-20 11:11:11', nombre='Censocreate2',
+                                  fecha_fin='2018-12-15 11:11:11')
+        self.assertEqual(Censo.objects.filter(id_votacion=201).exists(), True)
+
+
+    def test_create_negative_0(self):
+        exception = False
         try:
-            censo = Censo.objects.create(id_votacion=200, rol='ASISTENTE', nombre='', fecha_ini='2017-11-15 11:11:11',
+            censo = Censo.objects.create(id_votacion=200, rol='ASISTENTE', nombre=None, fecha_ini='2017-11-15 11:11:11',
                                          fecha_fin='2018-12-15 11:11:11')
-        except Exception:
-            Response(status=status.HTTP_404_NOT_FOUND)
+        except:
+            exception = True
 
-        return Response.status_code == 404
+        self.assertEqual(exception, True)
+
+    def test_create_negative_1(self):
+        exception = False
+        try:
+            censo = Censo.objects.create(id_votacion=None, rol='ASISTENTE', nombre='CensoCreate3', fecha_ini='2017-11-15 11:11:11',
+                                         fecha_fin='2018-12-15 11:11:11')
+        except:
+            exception = True
+
+        self.assertEqual(exception, True)
+
+
