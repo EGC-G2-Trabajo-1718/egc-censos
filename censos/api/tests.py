@@ -132,9 +132,9 @@ class CensoTests(APITestCase):
     def test_update_censo_rol(self):
         Censo.objects.create(id_votacion=196, rol='ASISTENTE', nombre="Censocreate",
                              fecha_ini="2017-12-15 11:11:11",
-                             fecha_fin="2019-12-15 11:11:11")
+                             fecha_fin="2019-12-15 11:11:11", comunidad_autonoma='ANDALUCIA')
         c1 = Censo.objects.get(id_votacion=196)
-        Censo.objects.update(id_votacion=196, nombre="CensoUpdate", rol='AMBOS')
+        Censo.objects.update(id_votacion=196, nombre="CensoUpdate", rol='AMBOS', comunidad_autonoma='EXTREMADURA')
         c2 = Censo.objects.get(id_votacion=196)
         self.assertEquals(c2, c1)
 

@@ -175,6 +175,7 @@ def update_censo(request):
     rol = request.GET.get('rol', Censo.objects.get(id=id).rol)
     idvotacion = request.GET.get('id_votacion', Censo.objects.get(id=id).id_votacion)
     fechaini = request.GET.get('fecha_ini', '')
+    comunidad_autonoma = request.GET.get('comunidad_autonoma','')
     if not fechaini:
         fechaini = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     fechafin = request.GET.get('fecha_fin', Censo.objects.get(id=id).fecha_fin)
@@ -182,7 +183,7 @@ def update_censo(request):
     if id and Censo.objects.filter(id=id).exists():
         try:
             Censo.objects.filter(id=id).update(nombre=nombre, fecha_ini=fechaini, fecha_fin=fechafin, rol=rol,
-                                               id_votacion=idvotacion)
+                                               id_votacion=idvotacion, comunidad_autonoma=comunidad_autonoma)
             censo = Censo.objects.get(id=id)
         except Exception as e:
             return Response(status=status.HTTP_404_NOT_FOUND)
